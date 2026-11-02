@@ -1,0 +1,38 @@
+{
+  "zero_spatial_minus_random": {
+    "n": 32,
+    "difference": -0.019002597779035568,
+    "lower": -0.022575350509335596,
+    "upper": -0.015054845809936533
+  },
+  "trained_spatial_minus_zero_spatial": {
+    "n": 32,
+    "difference": -0.0019357837736606598,
+    "lower": -0.005125392973423004,
+    "upper": 0.0012059035710990423
+  },
+  "trained_spatial_minus_random": {
+    "n": 64,
+    "difference": -0.016691413708031184,
+    "lower": -0.01921886167644213,
+    "upper": -0.014183344327223811
+  },
+  "trained_spatial_minus_temporal": {
+    "n": 64,
+    "difference": -0.010835875757038593,
+    "lower": -0.012182046310044825,
+    "upper": -0.00943246854003519
+  },
+  "trained_joint_minus_spatial": {
+    "n": 64,
+    "difference": 0.007005565799772739,
+    "lower": 0.005942321312613785,
+    "upper": 0.008077397244051099
+  },
+  "trained_joint_minus_temporal": {
+    "n": 64,
+    "difference": -0.003830309957265854,
+    "lower": -0.004361472046002746,
+    "upper": -0.003277729637920857
+  }
+}

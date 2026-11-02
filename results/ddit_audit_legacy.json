@@ -1,0 +1,112 @@
+{
+  "records": 640,
+  "split": "validation",
+  "legacy_head": true,
+  "p2_teacher_max_abs": 0.0,
+  "p2_cache_max_abs": 0.00015783309936523438,
+  "p2_cache_mse": 7.363800324719505e-13,
+  "overall": {
+    "epsilon": {
+      "mse": 0.43022823678262256,
+      "target_variance": 0.8280835967652198,
+      "low_frequency_mse": 0.4772537803571591,
+      "high_frequency_mse": 0.41698574954323503,
+      "high_frequency_target_energy": 0.8338959979161144
+    },
+    "variance": {
+      "mse": 3.947737130116708,
+      "target_variance": 0.881867306591397,
+      "low_frequency_mse": 8.784238274054406,
+      "high_frequency_mse": 2.5857687228751787,
+      "high_frequency_target_energy": 0.27304626416371036
+    }
+  },
+  "bins": {
+    "0-199": {
+      "records": 128,
+      "epsilon": {
+        "mse": 0.40702854285980977,
+        "target_variance": 0.31904335866513195,
+        "low_frequency_mse": 0.47752224659428816,
+        "high_frequency_mse": 0.38717737472431835,
+        "high_frequency_target_energy": 0.32417577514438334
+      },
+      "variance": {
+        "mse": 7.215808287318711,
+        "target_variance": 3.6594921682047574,
+        "low_frequency_mse": 17.617888455520266,
+        "high_frequency_mse": 4.286561681755071,
+        "high_frequency_target_energy": 1.347617525586985
+      }
+    },
+    "200-399": {
+      "records": 128,
+      "epsilon": {
+        "mse": 0.4381812887397803,
+        "target_variance": 0.8409835337733148,
+        "low_frequency_mse": 0.49966946704534143,
+        "high_frequency_mse": 0.4208660945986649,
+        "high_frequency_target_energy": 0.8529867679372538
+      },
+      "variance": {
+        "mse": 4.259813013443984,
+        "target_variance": 0.07461958665606051,
+        "low_frequency_mse": 9.205689539132683,
+        "high_frequency_mse": 2.8670442796768287,
+        "high_frequency_target_energy": 0.007399733533838587
+      }
+    },
+    "400-599": {
+      "records": 128,
+      "epsilon": {
+        "mse": 0.3573483154052041,
+        "target_variance": 0.9723824770327177,
+        "low_frequency_mse": 0.4018705768339227,
+        "high_frequency_mse": 0.34481075743090916,
+        "high_frequency_target_energy": 0.981492190871307
+      },
+      "variance": {
+        "mse": 3.427428272595041,
+        "target_variance": 0.018646187377120475,
+        "low_frequency_mse": 7.340323404935363,
+        "high_frequency_mse": 2.325549167743261,
+        "high_frequency_target_energy": 0.0034149451682963746
+      }
+    },
+    "600-799": {
+      "records": 128,
+      "epsilon": {
+        "mse": 0.4293921764811688,
+        "target_variance": 1.0025107918129406,
+        "low_frequency_mse": 0.45952240965864094,
+        "high_frequency_mse": 0.4209074424825065,
+        "high_frequency_target_energy": 1.004561842127574
+      },
+      "variance": {
+        "mse": 2.553415680509505,
+        "target_variance": 0.010942032487602971,
+        "low_frequency_mse": 5.278397890597866,
+        "high_frequency_mse": 1.7860552333632211,
+        "high_frequency_target_energy": 0.003325855553277174
+      }
+    },
+    "800-999": {
+      "records": 128,
+      "epsilon": {
+        "mse": 0.5191908604271498,
+        "target_variance": 1.0054923876501514,
+        "low_frequency_mse": 0.5476842016536018,
+        "high_frequency_mse": 0.5111670784797759,
+        "high_frequency_target_energy": 1.0062634135000534
+      },
+      "variance": {
+        "mse": 2.2822203967162973,
+        "target_variance": 0.01055745173690156,
+        "low_frequency_mse": 4.47889208008585,
+        "high_frequency_mse": 1.6636332518375123,
+        "high_frequency_target_energy": 0.0034732609761545462
+      }
+    }
+  },
+  "prediction_gate": false
+}

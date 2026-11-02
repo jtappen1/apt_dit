@@ -1,0 +1,11 @@
+{
+  "torch": "2.15.0+cu132",
+  "cuda": "13.2",
+  "gpu": "NVIDIA GeForce RTX 5090",
+  "parameters": 32963360,
+  "checkpoint_sha256": "979142b209a6b6b5c9d63e025188abbe6377df7c43097321a31f7b8e5217bd58",
+  "all_fine_max_error": 0.0,
+  "bf16_relative_rmse": 0.005676759406924248,
+  "sampling_precision": "fp32",
+  "note": "FP32 retained for initial controlled comparison; BF16 difference reported, not assumed harmless."
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-02",
+  "recognition_gate_passed": false,
+  "reviewed_pairs": 16,
+  "description": "All three all-patch-4 arms remain unrecognizable corrupted patterns. C reduces saturation and introduces broad color/spatial structure but fails usable image quality.",
+  "longer_training_improves_prediction": true,
+  "longer_training_alone_fixes_images": false,
+  "explicit_skip_fixes_high_noise_prediction": true,
+  "test_manifest_sampled": false,
+  "recovery_gpu_process_seconds": 200.80332938372158,
+  "next_recommended_method": "Preserve full-resolution local information in the dense decoder; begin with conservative count-2/count-4 compression. Do not launch schedules yet.",
+  "report_interpretation": "## Observed outcome and decision\n\n**None of the three arms passes the image-recognition gate.** Direct inspection of all 16 development images shows corrupted patterns rather than reliably recognizable class/content. C reduces saturation and has more broad color/spatial structure, but is not usable generation.\n\nLonger corrected training materially improves epsilon fit: A falls from 0.6549 to 0.2661, about a 59% reduction. Removing variance loss lowers it further to 0.2334 at matched updates, but paired image LPIPS is not improved (0.8819 versus 0.8739). This loss improvement alone does not repair iterative generation.\n\nThe explicit skip package is substantially more promising numerically: epsilon MSE 0.0656, guided MSE 0.0751, and next-state MSE 0.000363. At t=800\u2013999 its epsilon MSE is 0.00000671 versus identity baseline 0.00000776; it preserves the easy high-noise signal. Its largest observed final latent magnitude is 5.09 versus 133.05 for A. Development LPIPS improves to 0.7766, but this remains a failed quality gate.\n\nErrors now concentrate at low/middle timesteps: C epsilon MSE is 0.2051 at t=0\u2013199 and 0.1166 at t=200\u2013399. At the final check, training epsilon MSE is 0.0648 versus development 0.0656. Both fit and development curves are still improving; these trials neither establish convergence nor prove that more training could never help. They do establish that 3,200 more updates are insufficient to recover usable all-patch-4 images.\n\n**Next recommendation:** preserve fine local information in the dense output decoder and begin with conservative count-2/count-4 compression. That is a separate next experiment, not executed here. Keep the explicit skip as a candidate building block. Do not spend further runs on selector sweeps or presume that indefinite continuation will fix the low-noise reconstruction problem.\n\n"
+}

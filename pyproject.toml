@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apt-dit"
+version = "0.1.0"
+description = "Controlled APT-style patching experiments on pretrained DiT-S"
+requires-python = ">=3.11"
+dependencies = ["torch", "torchvision", "timm", "diffusers", "accelerate", "safetensors", "numpy", "scipy", "pillow", "lpips", "gdown", "matplotlib", "pytest"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
