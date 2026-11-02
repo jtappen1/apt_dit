@@ -1,0 +1,175 @@
+{
+  "n": 32,
+  "metric": "LPIPS distance from baseline; lower indicates closer to the same-seed baseline sample",
+  "repeated_mean": 0.8778659980744123,
+  "dense_decoder_mean": 0.7136220429092646,
+  "paired_difference_dense_minus_repeated": -0.16424395516514778,
+  "paired_t_95_ci": [
+    -0.18930918033282723,
+    -0.13917872999746833
+  ],
+  "median_denoise_seconds_repeated": 0.21648084348998964,
+  "median_denoise_seconds_dense": 0.22368567995727062,
+  "rows": [
+    {
+      "seed": 30000,
+      "repeated_lpips": 0.849559485912323,
+      "dense_decoder_lpips": 0.6147149205207825
+    },
+    {
+      "seed": 30001,
+      "repeated_lpips": 0.8982579708099365,
+      "dense_decoder_lpips": 0.8878394961357117
+    },
+    {
+      "seed": 30002,
+      "repeated_lpips": 0.8885043263435364,
+      "dense_decoder_lpips": 0.7218985557556152
+    },
+    {
+      "seed": 30003,
+      "repeated_lpips": 0.9305797219276428,
+      "dense_decoder_lpips": 0.7478801012039185
+    },
+    {
+      "seed": 30004,
+      "repeated_lpips": 0.8875654339790344,
+      "dense_decoder_lpips": 0.707944393157959
+    },
+    {
+      "seed": 30005,
+      "repeated_lpips": 0.9739439487457275,
+      "dense_decoder_lpips": 0.7169124484062195
+    },
+    {
+      "seed": 30006,
+      "repeated_lpips": 0.7662957906723022,
+      "dense_decoder_lpips": 0.6139742136001587
+    },
+    {
+      "seed": 30007,
+      "repeated_lpips": 0.8963860273361206,
+      "dense_decoder_lpips": 0.6919090151786804
+    },
+    {
+      "seed": 30008,
+      "repeated_lpips": 0.9748955368995667,
+      "dense_decoder_lpips": 0.6735577583312988
+    },
+    {
+      "seed": 30009,
+      "repeated_lpips": 0.9450576305389404,
+      "dense_decoder_lpips": 0.7999894022941589
+    },
+    {
+      "seed": 30010,
+      "repeated_lpips": 0.8770936727523804,
+      "dense_decoder_lpips": 0.8663724660873413
+    },
+    {
+      "seed": 30011,
+      "repeated_lpips": 0.9889348745346069,
+      "dense_decoder_lpips": 0.800703763961792
+    },
+    {
+      "seed": 30012,
+      "repeated_lpips": 0.971142053604126,
+      "dense_decoder_lpips": 0.7322483062744141
+    },
+    {
+      "seed": 30013,
+      "repeated_lpips": 0.7755146026611328,
+      "dense_decoder_lpips": 0.5646205544471741
+    },
+    {
+      "seed": 30014,
+      "repeated_lpips": 0.8656585216522217,
+      "dense_decoder_lpips": 0.6781790852546692
+    },
+    {
+      "seed": 30015,
+      "repeated_lpips": 0.8032442331314087,
+      "dense_decoder_lpips": 0.659844160079956
+    },
+    {
+      "seed": 30016,
+      "repeated_lpips": 0.8655011057853699,
+      "dense_decoder_lpips": 0.6611689329147339
+    },
+    {
+      "seed": 30017,
+      "repeated_lpips": 0.9314714670181274,
+      "dense_decoder_lpips": 0.7473474144935608
+    },
+    {
+      "seed": 30018,
+      "repeated_lpips": 0.8304438591003418,
+      "dense_decoder_lpips": 0.6288901567459106
+    },
+    {
+      "seed": 30019,
+      "repeated_lpips": 0.8758808374404907,
+      "dense_decoder_lpips": 0.7242171764373779
+    },
+    {
+      "seed": 30020,
+      "repeated_lpips": 0.8852934837341309,
+      "dense_decoder_lpips": 0.6653736233711243
+    },
+    {
+      "seed": 30021,
+      "repeated_lpips": 0.8403667211532593,
+      "dense_decoder_lpips": 0.6129387617111206
+    },
+    {
+      "seed": 30022,
+      "repeated_lpips": 0.8719174265861511,
+      "dense_decoder_lpips": 0.7793002724647522
+    },
+    {
+      "seed": 30023,
+      "repeated_lpips": 0.7932762503623962,
+      "dense_decoder_lpips": 0.624579668045044
+    },
+    {
+      "seed": 30024,
+      "repeated_lpips": 0.8509235978126526,
+      "dense_decoder_lpips": 0.6966894865036011
+    },
+    {
+      "seed": 30025,
+      "repeated_lpips": 0.8361499309539795,
+      "dense_decoder_lpips": 0.7646999955177307
+    },
+    {
+      "seed": 30026,
+      "repeated_lpips": 0.7837133407592773,
+      "dense_decoder_lpips": 0.6835915446281433
+    },
+    {
+      "seed": 30027,
+      "repeated_lpips": 0.8479968905448914,
+      "dense_decoder_lpips": 0.7802585363388062
+    },
+    {
+      "seed": 30028,
+      "repeated_lpips": 0.8232364654541016,
+      "dense_decoder_lpips": 0.6111713647842407
+    },
+    {
+      "seed": 30029,
+      "repeated_lpips": 0.8071258068084717,
+      "dense_decoder_lpips": 0.5954461693763733
+    },
+    {
+      "seed": 30030,
+      "repeated_lpips": 1.0016282796859741,
+      "dense_decoder_lpips": 0.8708487749099731
+    },
+    {
+      "seed": 30031,
+      "repeated_lpips": 0.9541526436805725,
+      "dense_decoder_lpips": 0.9107948541641235
+    }
+  ]
+}

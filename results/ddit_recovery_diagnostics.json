@@ -1,0 +1,230 @@
+{
+  "records": 640,
+  "note": "CPU cache analysis only. Identity baselines are diagnostics, not usable denoisers.",
+  "bins": {
+    "0-199": {
+      "epsilon_equals_x_mse": 0.8658005682192345,
+      "epsilon_equals_scaled_x_mse": 4393.918039789194,
+      "teacher_epsilon_variance": 0.31904335866513195,
+      "ddim_epsilon_error_coefficient_min": 0.010000500037502573,
+      "ddim_epsilon_error_coefficient_max": 0.06534721121881265,
+      "x0_epsilon_error_coefficient_max": 0.34913850668001634
+    },
+    "200-399": {
+      "epsilon_equals_x_mse": 0.3324939368206391,
+      "epsilon_equals_scaled_x_mse": 0.7102960942619624,
+      "teacher_epsilon_variance": 0.8409835337733148,
+      "ddim_epsilon_error_coefficient_min": 0.07251689522235494,
+      "ddim_epsilon_error_coefficient_max": 0.08271195970002909,
+      "x0_epsilon_error_coefficient_max": 1.412365220415222
+    },
+    "400-599": {
+      "epsilon_equals_x_mse": 0.04555084680825544,
+      "epsilon_equals_scaled_x_mse": 0.05241015132758148,
+      "teacher_epsilon_variance": 0.9723824770327177,
+      "ddim_epsilon_error_coefficient_min": 0.10539857902251182,
+      "ddim_epsilon_error_coefficient_max": 0.11851779177632027,
+      "x0_epsilon_error_coefficient_max": 4.567773106403451
+    },
+    "600-799": {
+      "epsilon_equals_x_mse": 0.001698301369940482,
+      "epsilon_equals_scaled_x_mse": 0.0017323957191073655,
+      "teacher_epsilon_variance": 1.0025107918129406,
+      "ddim_epsilon_error_coefficient_min": 0.1519099530629585,
+      "ddim_epsilon_error_coefficient_max": 0.17645180878868116,
+      "x0_epsilon_error_coefficient_max": 21.083339857669372
+    },
+    "800-999": {
+      "epsilon_equals_x_mse": 7.76475916453663e-06,
+      "epsilon_equals_scaled_x_mse": 7.810087056431103e-06,
+      "teacher_epsilon_variance": 1.0054923876501514,
+      "ddim_epsilon_error_coefficient_min": 0.19651939637469373,
+      "ddim_epsilon_error_coefficient_max": 0.22152586449013834,
+      "x0_epsilon_error_coefficient_max": 157.40728081040763
+    }
+  },
+  "corrected_residual": {
+    "epsilon_center_matrix": [
+      [
+        0.07792890071868896,
+        -0.0012028737692162395,
+        -0.0014975592494010925,
+        -0.004382645711302757
+      ],
+      [
+        0.000489193422254175,
+        0.07796990871429443,
+        0.0025495802983641624,
+        0.0020972052589058876
+      ],
+      [
+        -0.003062095493078232,
+        0.0028883011545985937,
+        0.07782628387212753,
+        -0.0012849780032411218
+      ],
+      [
+        -0.006919700186699629,
+        0.0032992621418088675,
+        -0.0026505303103476763,
+        0.0779358297586441
+      ]
+    ],
+    "epsilon_weight_norm": 0.21322329744925245,
+    "variance_weight_norm": 0.07941137941087982
+  },
+  "learning_curves": {
+    "ddit_s_p4": {
+      "first": {
+        "step": 0,
+        "validation_mse": 5535.064125061035
+      },
+      "last": {
+        "step": 800,
+        "train_mse": 113.08439636230469,
+        "validation_mse": 17.550390869379044
+      },
+      "checks": 9
+    },
+    "ddit_s_p4_corrected_slice": {
+      "first": {
+        "step": 0,
+        "validation_mse": 0.8009031973779202
+      },
+      "last": {
+        "step": 800,
+        "train_mse": 0.41906535625457764,
+        "validation_mse": 0.4988790610805154
+      },
+      "checks": 9
+    },
+    "ddit_s_p4_long": {
+      "first": {
+        "step": 0,
+        "validation_mse": 5535.064125061035
+      },
+      "last": {
+        "step": 6000,
+        "train_mse": 0.7297128438949585,
+        "validation_mse": 2.1428367141634226
+      },
+      "checks": 61
+    },
+    "dense_output": {
+      "first": {
+        "step": 0,
+        "validation": {
+          "repeat": 0.33809664845466614,
+          "decoded": 0.33809664845466614,
+          "decoded_coarse_region": 0.6668886914849281,
+          "repeat_coarse_region": 0.6668886914849281
+        }
+      },
+      "last": {
+        "step": 1000,
+        "loss": 0.2447612676769495,
+        "validation": {
+          "repeat": 0.33809664845466614,
+          "decoded": 0.04730732028838247,
+          "decoded_coarse_region": 0.08531004361187418,
+          "repeat_coarse_region": 0.6668886914849281
+        }
+      },
+      "checks": 11
+    },
+    "dense_output_onpolicy": {
+      "first": {
+        "step": 0,
+        "validation": {
+          "repeat": 0.36173953115940094,
+          "decoded": 0.036913205908300974,
+          "decoded_coarse_region": 0.0673893728138258,
+          "repeat_coarse_region": 0.7170420276621977
+        }
+      },
+      "last": {
+        "step": 1000,
+        "loss": 0.2699602604843676,
+        "validation": {
+          "repeat": 0.36173953115940094,
+          "decoded": 0.021929679031018168,
+          "decoded_coarse_region": 0.03742231878762444,
+          "repeat_coarse_region": 0.7170420276621977
+        }
+      },
+      "checks": 11
+    },
+    "dense_output_onpolicy_k4": {
+      "first": {
+        "step": 0,
+        "validation": {
+          "repeat": 0.16385854470233122,
+          "decoded": 0.01342029576577867,
+          "decoded_coarse_region": 0.044789693939189114,
+          "repeat_coarse_region": 0.6465426869690418
+        }
+      },
+      "last": {
+        "step": 1000,
+        "loss": 0.012284040916711092,
+        "validation": {
+          "repeat": 0.16385854470233122,
+          "decoded": 0.011349850329376446,
+          "decoded_coarse_region": 0.03650791250402108,
+          "repeat_coarse_region": 0.6465426869690418
+        }
+      },
+      "checks": 11
+    },
+    "dense_output_onpolicy_lora16": {
+      "first": {
+        "step": 0,
+        "validation": {
+          "repeat": 0.36173953115940094,
+          "decoded": 0.021929679031018168,
+          "decoded_coarse_region": 0.03742231878762444,
+          "repeat_coarse_region": 0.7170420276621977
+        }
+      },
+      "last": {
+        "step": 1000,
+        "loss": 0.25056539848446846,
+        "validation": {
+          "repeat": 0.3593077554057042,
+          "decoded": 0.016831310039075714,
+          "decoded_coarse_region": 0.028573880592981975,
+          "repeat_coarse_region": 0.7135267704725266
+        }
+      },
+      "checks": 11
+    },
+    "detail": {
+      "first": {
+        "step": 0,
+        "validation": {
+          "0": 2.2676434481198223e-12,
+          "4": 0.35588062182068825,
+          "8": 0.8029569014906883,
+          "12": 1.2396967448294163,
+          "16": 1.578316107392311
+        }
+      },
+      "last": {
+        "step": 1000,
+        "loss": 0.28888729587197304,
+        "validation": {
+          "0": 2.2676434481198223e-12,
+          "4": 0.2782723093405366,
+          "8": 0.650553036481142,
+          "12": 0.9844541866332293,
+          "16": 1.2661274373531342
+        }
+      },
+      "checks": 11
+    }
+  },
+  "gpu_ledger": {
+    "charged_hours": 0.20760085895217747,
+    "remaining_hours": 7.792399141047823
+  }
+}
