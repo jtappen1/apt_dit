@@ -1,0 +1,84 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=33G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth
+{
+  "name": "mixed_fullft",
+  "samples": 50000,
+  "traj": 5000,
+  "minutes": 75.0,
+  "batch": 256,
+  "lr": 0.0001,
+  "rank": 32,
+  "full_finetune": true,
+  "resume": null,
+  "preview_every": 2000,
+  "gen_only": false,
+  "trainable_parameters": 32290432,
+  "tau_range": [
+    0.0009183173533529043,
+    0.0067045558243989944
+  ],
+  "train_x0": 50000,
+  "train_traj": 4744,
+  "val_states": 1024,
+  "objective": "MSE(eps, 4ch) + 0.1 MSE(var), teacher targets, bf16 autocast"
+}
+step=100 loss=0.57915 lr=2.00e-05 elapsed=19s
+step=200 loss=0.54359 lr=4.00e-05 elapsed=38s
+step=300 loss=0.55957 lr=6.00e-05 elapsed=56s
+step=400 loss=0.59004 lr=7.99e-05 elapsed=75s
+step=500 loss=0.59279 lr=9.99e-05 elapsed=94s
+val step=500: {'uniform4': 0.6616071611642838, 'uniform8': 0.8191918730735779, 'mixed': 0.4962765723466873}
+step=600 loss=0.55973 lr=9.99e-05 elapsed=114s
+step=700 loss=0.57562 lr=9.98e-05 elapsed=132s
+step=800 loss=0.58927 lr=9.97e-05 elapsed=151s
+step=900 loss=0.55383 lr=9.97e-05 elapsed=170s
+step=1000 loss=0.57564 lr=9.96e-05 elapsed=189s
+val step=1000: {'uniform4': 0.659064531326294, 'uniform8': 0.8181852400302887, 'mixed': 0.4945487380027771}
+step=1100 loss=0.57230 lr=9.95e-05 elapsed=208s
+step=1200 loss=0.56854 lr=9.94e-05 elapsed=227s
+step=1300 loss=0.55728 lr=9.93e-05 elapsed=245s
+step=1400 loss=0.54202 lr=9.92e-05 elapsed=264s
+step=1500 loss=0.57891 lr=9.91e-05 elapsed=283s
+val step=1500: {'uniform4': 0.6325956434011459, 'uniform8': 0.811972513794899, 'mixed': 0.48408135026693344}
+step=1600 loss=0.55596 lr=9.89e-05 elapsed=302s
+srun: forcing job termination
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 10066317.14 ON dgx005 CANCELLED AT 2026-11-21T16:59:45 ***
+srun: error: dgx005: task 0: Killed

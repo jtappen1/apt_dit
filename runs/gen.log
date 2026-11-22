@@ -1,0 +1,80 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 8                  [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 8                  [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=44G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
+generated 1000/50000 (12s)
+generated 2000/50000 (23s)
+generated 3000/50000 (33s)
+generated 4000/50000 (44s)
+generated 5000/50000 (54s)
+generated 6000/50000 (65s)
+generated 7000/50000 (76s)
+generated 8000/50000 (86s)
+generated 9000/50000 (98s)
+generated 10000/50000 (108s)
+generated 11000/50000 (119s)
+generated 12000/50000 (140s)
+generated 13000/50000 (163s)
+generated 14000/50000 (176s)
+generated 15000/50000 (190s)
+generated 16000/50000 (212s)
+generated 17000/50000 (234s)
+generated 18000/50000 (251s)
+generated 19000/50000 (261s)
+generated 20000/50000 (271s)
+generated 21000/50000 (282s)
+generated 22000/50000 (301s)
+generated 23000/50000 (323s)
+generated 24000/50000 (338s)
+generated 25000/50000 (349s)
+generated 26000/50000 (360s)
+generated 27000/50000 (377s)
+generated 28000/50000 (399s)
+generated 29000/50000 (417s)
+generated 30000/50000 (437s)
+generated 31000/50000 (450s)
+generated 32000/50000 (460s)
+generated 33000/50000 (470s)
+generated 34000/50000 (481s)
+generated 35000/50000 (491s)
+generated 36000/50000 (502s)
+generated 37000/50000 (512s)
+generated 38000/50000 (523s)
+generated 39000/50000 (533s)
+generated 40000/50000 (544s)
+generated 41000/50000 (554s)
+generated 42000/50000 (564s)
+generated 43000/50000 (575s)
+generated 44000/50000 (587s)
+generated 45000/50000 (598s)
+generated 46000/50000 (608s)
+generated 47000/50000 (619s)
+generated 48000/50000 (629s)
+generated 49000/50000 (639s)
+generated 50000/50000 (650s)

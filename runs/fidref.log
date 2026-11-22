@@ -1,0 +1,33 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 4                  [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 4                  [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=22G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
+Downloading: "https://github.com/mseitzer/pytorch-fid/releases/download/fid_weights/pt_inception-2015-12-05-6726825d.pth" to /vast/home/m/maxmerc/apt_dit/.cache/torch/hub/checkpoints/pt_inception-2015-12-05-6726825d.pth
+  0%|          | 0.00/91.2M [00:00<?, ?B/s] 19%|█▉        | 17.8M/91.2M [00:00<00:00, 186MB/s] 42%|████▏     | 38.1M/91.2M [00:00<00:00, 202MB/s] 63%|██████▎   | 57.5M/91.2M [00:00<00:00, 126MB/s] 79%|███████▉  | 71.9M/91.2M [00:00<00:00, 112MB/s]100%|██████████| 91.2M/91.2M [00:00<00:00, 140MB/s]
+reference stats from 10000 images

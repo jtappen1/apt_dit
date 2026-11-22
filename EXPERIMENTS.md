@@ -1,6 +1,6 @@
 # Adaptive patching on DiT-S: experiment record
 
-Updated 2026-11-02. This is the consolidated record of completed experiments, conclusions, reproducibility, and possible next work. It replaces the former agent plan, project plans, recovery plans, and experiment log. The original proposal is preserved in [cis_6220_project.pdf](cis_6220_project.pdf); detailed measurements remain in `results/`.
+Updated 2026-11-21 (Section 7 added). This is the consolidated record of completed experiments, conclusions, reproducibility, and possible next work. It replaces the former agent plan, project plans, recovery plans, and experiment log. The original proposal is preserved in [cis_6220_project.pdf](cis_6220_project.pdf); detailed measurements remain in `results/`.
 
 ## Current position
 
@@ -131,6 +131,49 @@ The selected 22,200-update checkpoint improves development LPIPS from 0.7766 to 
 Keep both best and last checkpoints. All 20 tests pass, including exact next-update optimizer/data-RNG restoration, nonzero final conditioning, geometry, v conversion, and deterministic-DDIM variance independence. The selected checkpoint's pure-fine full trajectory still matches upstream bit-for-bit.
 
 Evidence: [long-training report](results/ddit_long_training_report.md), [training/generalization curves](results/ddit_long_training_curves.png), [paired images](results/ddit_long_training_samples.png).
+
+## 7. Shared mixed-patch model and matched H1/H2 sweep (2026-11-21, B200)
+
+Run on a fresh clone (no earlier artifacts available), one NVIDIA B200 instead of the RTX 5090. The old 8 h ledger file was not present; by decision for this session the cap was not enforced. Code: `mixed.py`, `mixed_sample.py`, `mixed_train.py`, `mixed_eval.py`, `scripts/report_mixed.py`, `tests/test_mixed.py` (4 tests pass; 20 original tests pass). Full tables and figures: [results/mixed/lora32_report.md](results/mixed/lora32_report.md).
+
+**Model (proposal Sec. 3.1, one checkpoint for every adapted arm).** Sixteen g=8 blocks, each at p in {2,4,8} (16/4/1 tokens); separate p=4/p=8 embed/de-embed layers (p=2 uses the frozen layers); learned patch-size embedding; fixed sin-cos positions at exact coarse patch centers; rank-32 LoRA on qkv/proj/fc1/fc2 applied token-wise to coarse tokens only, so all-fine layouts are bit-exact with the teacher. Two additions were required, both in coarse regions only: (1) the explicit noise skip `eps = sqrt(1-ab) x_t + sqrt(ab) h` (without it held-out all-p4 eps MSE stayed at 0.66 and all-p8 at 0.82, even with full fine-tuning); (2) a small fine-grid decoder reading coarse trunk features plus the frozen fine embedding of x_t (without it images kept heavy residual grain; preview LPIPS all-p4 0.82 -> 0.54 after 1,500 steps). 3.29M trainable parameters.
+
+**Training.** Self-distillation from 50,000 teacher CFG-4 samples covering all 1,000 classes plus 5,000 full 50-step trajectories (fixes the 128-class / 10-timestep coverage problem). Batches: half real trajectory states, half x0 re-noised at uniform t; 10% null labels. Layouts per image: uniform-4, uniform-8, smooth random fields over {2,4,8}, and real Eq. 3 selector masks at random thresholds (fixes the train/inference layout mismatch). Loss eps-MSE + 0.1 variance-MSE, bf16, AdamW 3e-4 cosine, batch 256, 60 min (12,585 steps). Held-out eps MSE: all-p4 0.0237, all-p8 0.0302, mixed 0.0197. A full-fine-tune fallback trained concurrently reached the same loss (0.0234/0.0307) but broke the fine path (preview LPIPS 0.255 at ~255 tokens vs 0.017 for LoRA), so LoRA-32 is the evaluated model.
+
+**Sweep (E2).** 5,000 fresh seeds per arm (seeds >= 400000, disjoint from training), FID-5K vs the ADM ImageNet-256 reference batch and vs the teacher's own samples, paired LPIPS on 1,000 with bootstrap CIs, executed FLOPs from `torch.utils.flop_counter` (both CFG branches, all embeddings/heads/decoder/LoRA). Arms: teacher DDIM 50/40/33/25/20/15/10; uniform-4/8; fixed p4->p2 switch; temporal (DDiT image-wide Delta^3 vs tau); spatial (causal: blocks ranked by the first scheduled step's score, coarsened to a token budget, held fixed); joint (Eq. 3 per block per step); spatial-random and joint-random controls. Budgets ~200/150/100 mean tokens per step.
+
+| Arm (mean tokens) | GFLOPs/img | FID vs teacher | LPIPS vs teacher |
+|---|---:|---:|---:|
+| Teacher DDIM-50 (256) | 1211 | 0 | 0 |
+| Teacher DDIM-25 | 606 | 1.65 | 0.032 |
+| Teacher DDIM-10 | 242 | 8.38 | 0.187 |
+| Temporal (228) / joint (226) | 1140 / 1130 | 3.32 / 3.67 | 0.082 / 0.094 |
+| Temporal (166) / joint (151) | 822 / 762 | 9.95 / 10.62 | 0.276 / 0.328 |
+| Temporal (99) / joint (101) | 510 / 525 | 33.4 / 31.5 | 0.437 / 0.429 |
+| Spatial fixed (200 / 155 / 98) | 1037 / 795 / 505 | 15.1 / 38.3 / 94.2 | 0.273 / 0.355 / 0.428 |
+
+Findings:
+- **Fewer DDIM steps Pareto-dominates every patch schedule.** DDIM-10 (242 GFLOPs) is closer to the teacher than any adapted arm except the mildest (~1,130 GFLOPs), and DDIM-25 at half the compute is about 3× closer than those.
+- **H1 not supported.** Within-step spatial variation does not beat uniform-per-step patching at matched compute. Fixed spatial masks are far worse than temporal at 200 and 150 tokens. Joint and temporal lie on essentially the same curve: joint is worse at 200 tokens (+0.012 LPIPS, CI [+0.009, +0.015]) and slightly better at 100 tokens (-0.008, [-0.010, -0.007]).
+- **H2 not supported.** Joint does not give a better frontier than temporal-only. It does beat spatial-only.
+- **Selector placement adds nothing end-to-end.** Spatial vs spatial-random: all CIs include 0. Joint-random is as good or slightly better than joint, with a small token-count mismatch.
+- **Mask turnover:** joint masks change 8–23% of blocks per step, so the self-reinforcing lock-in concern did not materialize.
+- **FID vs ImageNet at CFG 4 is non-monotone.** Several adapted arms score below the teacher (18.1 vs 19.6) while being far from it, so the planned δ (teacher seed spread 0.05) cannot define matched quality here.
+
+**Allocation gap (E3, RQ3).** 256 images × 16 single-block coarsenings. Every signal ranks blocks better than random but weakly:
+
+| Signal | Spearman (p=8) | Gap (p=8) | Spearman (p=4) |
+|---|---:|---:|---:|
+| Δ³ score s8 | 0.31 | 0.34 | 0.24 |
+| Clean-latent variation | 0.31 | 0.34 | 0.29 |
+| x̂0 entropy | 0.28 | 0.36 | 0.24 |
+| Random | -0.02 | 0.51 | -0.01 |
+
+The training-free Δ³ score is no better than simple clean-latent variation.
+
+**Efficiency (E4).** At batch 1, every adapted arm is slower than the teacher: 0.56–0.93×. This is launch and overhead bound: one mixed CFG forward is about 6.3 ms at any token count, versus 3.5 ms for the teacher at 256 tokens. At batch 256 in FP32, uniform-8 is 5.8× and uniform-4 2.65× faster, and the 100-token temporal/spatial/joint arms are 1.4–2.0× faster, but only where quality is poor. In BF16 at batch 256, the variable-length padded arms are about 1.0×. DDIM-25 gives 2.0× with LPIPS 0.03.
+
+**Conclusion.** With a proposal-faithful shared model, the hypotheses can now be tested at matched executed compute, and they come out negative on DiT-S/ImageNet-256. Per-region or per-step patch scheduling does not beat per-step uniform patching. Neither beats simply running fewer sampling steps. Selection signals carry weak per-block information that does not translate into better generations.
 
 ## Reproducibility and local checkpoints
 

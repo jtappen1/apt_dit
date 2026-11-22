@@ -1,0 +1,275 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 16                 [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 16                 [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=88G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
++ cd /vast/home/m/maxmerc/apt_dit
++ source scripts/env.sh
+++++ dirname scripts/env.sh
++++ cd scripts/..
++++ pwd
+++ PROJECT_ROOT=/vast/home/m/maxmerc/apt_dit
+++ export PROJECT_ROOT
+++ export TMPDIR=/vast/home/m/maxmerc/apt_dit/.cache/tmp
+++ TMPDIR=/vast/home/m/maxmerc/apt_dit/.cache/tmp
+++ export PIP_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/pip
+++ PIP_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/pip
+++ export HF_HOME=/vast/home/m/maxmerc/apt_dit/.cache/huggingface
+++ HF_HOME=/vast/home/m/maxmerc/apt_dit/.cache/huggingface
+++ export TORCH_HOME=/vast/home/m/maxmerc/apt_dit/.cache/torch
+++ TORCH_HOME=/vast/home/m/maxmerc/apt_dit/.cache/torch
+++ export XDG_CACHE_HOME=/vast/home/m/maxmerc/apt_dit/.cache
+++ XDG_CACHE_HOME=/vast/home/m/maxmerc/apt_dit/.cache
+++ export TORCHINDUCTOR_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/inductor
+++ TORCHINDUCTOR_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/inductor
+++ export TRITON_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/triton
+++ TRITON_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/triton
+++ export CUDA_CACHE_PATH=/vast/home/m/maxmerc/apt_dit/.cache/cuda
+++ CUDA_CACHE_PATH=/vast/home/m/maxmerc/apt_dit/.cache/cuda
+++ export PYTHONPYCACHEPREFIX=/vast/home/m/maxmerc/apt_dit/.cache/pycache
+++ PYTHONPYCACHEPREFIX=/vast/home/m/maxmerc/apt_dit/.cache/pycache
+++ export PYTHONPATH=/vast/home/m/maxmerc/apt_dit/src
+++ PYTHONPATH=/vast/home/m/maxmerc/apt_dit/src
+++ export OMP_NUM_THREADS=4
+++ OMP_NUM_THREADS=4
+++ export MKL_NUM_THREADS=4
+++ MKL_NUM_THREADS=4
+++ export HF_HUB_DISABLE_TELEMETRY=1
+++ HF_HUB_DISABLE_TELEMETRY=1
+++ mkdir -p /vast/home/m/maxmerc/apt_dit/.cache/tmp /vast/home/m/maxmerc/apt_dit/.cache/pip /vast/home/m/maxmerc/apt_dit/.cache/huggingface /vast/home/m/maxmerc/apt_dit/.cache/torch
++ export UV_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/uv
++ UV_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/uv
++ /vast/home/m/maxmerc/.local/bin/uv venv --python /usr/bin/python3.12 .venv
+Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
++ /vast/home/m/maxmerc/.local/bin/uv pip install --python .venv/bin/python -r requirements.lock
+  × No solution found when resolving dependencies:
+  ╰─▶ Because apt-dit was not found in the package registry and you
+      require apt-dit==0.1.0, we can conclude that your requirements are
+      unsatisfiable.
++ /vast/home/m/maxmerc/.local/bin/uv pip install --python .venv/bin/python torch torchvision timm diffusers accelerate safetensors numpy scipy pillow lpips gdown matplotlib pytest
+Resolved 75 packages in 303ms
+Downloading torch (514.2MiB)
+Downloading nvidia-cudnn-cu13 (495.1MiB)
+Downloading nvidia-cusolver (217.4MiB)
+Downloading nvidia-cufft (208.1MiB)
+Downloading triton (272.4MiB)
+Downloading nvidia-cublas (386.1MiB)
+Downloading nvidia-cusparselt-cu13 (162.3MiB)
+Downloading nvidia-nccl-cu13 (206.0MiB)
+Downloading nvidia-cuda-nvrtc (44.8MiB)
+Downloading scipy (33.7MiB)
+Downloading nvidia-nvjitlink (44.5MiB)
+Downloading numpy (15.0MiB)
+Downloading nvidia-cusparse (144.0MiB)
+Downloading nvidia-nvshmem-cu13 (129.1MiB)
+Downloading nvidia-cuda-cupti (11.4MiB)
+Downloading matplotlib (9.4MiB)
+Downloading cuda-bindings (8.0MiB)
+Downloading kiwisolver (1.4MiB)
+Downloading nvidia-cuda-cccl (3.9MiB)
+Downloading pygments (1.2MiB)
+Downloading hf-xet (4.1MiB)
+Downloading sympy (6.0MiB)
+Downloading pillow (6.8MiB)
+Downloading networkx (2.0MiB)
+Downloading nvidia-cufile (1.3MiB)
+Downloading torchvision (7.2MiB)
+Downloading diffusers (6.2MiB)
+Downloading nvidia-cuda-runtime (2.2MiB)
+Downloading timm (2.7MiB)
+Downloading fonttools (5.2MiB)
+ Downloaded nvidia-cufile
+ Downloaded kiwisolver
+ Downloaded nvidia-cuda-runtime
+ Downloaded pygments
+ Downloaded timm
+ Downloaded networkx
+ Downloaded hf-xet
+ Downloaded fonttools
+ Downloaded diffusers
+ Downloaded pillow
+ Downloaded torchvision
+ Downloaded cuda-bindings
+ Downloaded sympy
+ Downloaded nvidia-cuda-cupti
+ Downloaded matplotlib
+ Downloaded numpy
+ Downloaded nvidia-cuda-cccl
+ Downloaded nvidia-nvjitlink
+ Downloaded scipy
+ Downloaded nvidia-cuda-nvrtc
+ Downloaded nvidia-nvshmem-cu13
+ Downloaded nvidia-cusparse
+ Downloaded nvidia-cusparselt-cu13
+ Downloaded nvidia-nccl-cu13
+ Downloaded nvidia-cufft
+ Downloaded nvidia-cusolver
+ Downloaded nvidia-cublas
+ Downloaded triton
+ Downloaded nvidia-cudnn-cu13
+ Downloaded torch
+Prepared 75 packages in 1m 41s
+Installed 75 packages in 36.20s
+ + accelerate==1.16.0
+ + anyio==4.16.0
+ + beautifulsoup4==4.15.0
+ + certifi==2026.11.20
+ + charset-normalizer==3.5.2
+ + click==8.5.1
+ + contourpy==1.4.0
+ + cuda-bindings==13.5.0
+ + cuda-pathfinder==1.9.1
+ + cuda-toolkit==13.2.2
+ + cycler==0.12.1
+ + diffusers==0.43.0
+ + filelock==4.2.12
+ + fonttools==4.68.0
+ + fsspec==2026.9.0
+ + gdown==6.5.2
+ + h11==0.16.0
+ + hf-xet==1.8.0
+ + httpcore2==2.16.2
+ + httpx2==2.16.2
+ + huggingface-hub==2.4.0
+ + idna==3.20
+ + importlib-metadata==10.2.0
+ + iniconfig==2.3.1
+ + jinja2==3.1.6
+ + kiwisolver==1.5.1
+ + lazy-importer==0.1.0
+ + lpips==0.1.4
+ + markupsafe==3.0.4
+ + matplotlib==3.11.2
+ + mpmath==1.3.0
+ + networkx==3.7
+ + numpy==2.5.5
+ + nvidia-cublas==13.4.1.3
+ + nvidia-cuda-cccl==13.3.5.0.6
+ + nvidia-cuda-cupti==13.2.86
+ + nvidia-cuda-nvrtc==13.2.86
+ + nvidia-cuda-runtime==13.2.86
+ + nvidia-cudnn-cu13==9.26.0.51
+ + nvidia-cufft==12.2.0.57
+ + nvidia-cufile==1.17.1.22
+ + nvidia-cusolver==12.2.0.11
+ + nvidia-cusparse==12.7.10.12
+ + nvidia-cusparselt-cu13==0.8.1
+ + nvidia-nccl-cu13==2.30.7
+ + nvidia-nvjitlink==13.5.37
+ + nvidia-nvshmem-cu13==3.7.2
+ + nvidia-nvtx==13.2.86
+ + packaging==26.3
+ + pillow==13.0.0
+ + pluggy==1.7.0
+ + psutil==7.2.2
+ + pygments==2.21.0
+ + pyparsing==3.3.3
+ + pysocks==1.7.1
+ + pytest==9.2.0
+ + python-dateutil==4.0.0
+ + pyyaml==6.0.4
+ + regex==2026.11.19
+ + requests==2.34.2
+ + safetensors==0.8.0
+ + scipy==1.18.1
+ + setuptools==84.2.1
+ + soupsieve==4.1.3
+ + sympy==1.14.0
+ + timm==1.0.31
+ + torch==2.15.0
+ + torchvision==0.29.2
+ + tqdm==4.70.1
+ + triton==3.9.0
+ + truststore==0.10.5
+ + typing-extensions==4.16.0
+ + tzdata==2026.6
+ + urllib3==2.8.0
+ + zipp==4.1.2
++ /vast/home/m/maxmerc/.local/bin/uv pip install --python .venv/bin/python --no-deps -e .
+Resolved 1 package in 6ms
+   Building apt-dit @ file:///vast/home/m/maxmerc/apt_dit
+      Built apt-dit @ file:///vast/home/m/maxmerc/apt_dit
+Prepared 1 package in 6.42s
+Installed 1 package in 94ms
+ + apt-dit==0.1.0 (from file:///vast/home/m/maxmerc/apt_dit)
++ /vast/home/m/maxmerc/.local/bin/uv pip install --python .venv/bin/python pytorch-fid
+Resolved 34 packages in 931ms
+Prepared 1 package in 111ms
+Installed 1 package in 96ms
+ + pytorch-fid==0.3.0
++ bash scripts/setup_sources.sh
+Cloning into 'vendor/DiT'...
+HEAD is now at ed81ce2 Update README.md
+Cloning into 'vendor/apt-reference'...
+HEAD is now at 707337e Update README.md
++ mkdir -p artifacts/checkpoints artifacts/fid
++ '[' -f artifacts/checkpoints/dit_s_256.pt ']'
++ .venv/bin/gdown --no-cookies 'https://drive.google.com/uc?id=1YOSNrFbP36vHlPQPBosqZKbPLokymRuO' -O artifacts/checkpoints/dit_s_256.pt
+Downloading...
+From (original): https://drive.google.com/uc?id=1YOSNrFbP36vHlPQPBosqZKbPLokymRuO
+From (redirected): https://drive.google.com/uc?id=1YOSNrFbP36vHlPQPBosqZKbPLokymRuO&confirm=t&uuid=28c6073d-ff9b-4909-a6d2-5635ed072308
+To: /vast/home/m/maxmerc/apt_dit/artifacts/checkpoints/dit_s_256.pt
+  0%|          | 0.00/264M [00:00<?, ?B/s]  1%|▏         | 3.67M/264M [00:00<00:07, 36.6MB/s]  3%|▎         | 7.34M/264M [00:00<00:17, 14.4MB/s] 11%|█▏        | 29.9M/264M [00:00<00:06, 37.3MB/s] 15%|█▍        | 38.3M/264M [00:01<00:05, 38.3MB/s] 20%|██        | 53.0M/264M [00:01<00:04, 51.0MB/s] 22%|██▏       | 58.7M/264M [00:01<00:04, 43.4MB/s] 25%|██▍       | 65.0M/264M [00:01<00:04, 46.6MB/s] 28%|██▊       | 73.9M/264M [00:01<00:03, 50.9MB/s] 30%|███       | 80.2M/264M [00:01<00:03, 52.5MB/s] 33%|███▎      | 86.0M/264M [00:01<00:03, 52.2MB/s] 35%|███▌      | 92.8M/264M [00:02<00:03, 50.2MB/s] 37%|███▋      | 98.0M/264M [00:02<00:04, 40.4MB/s] 40%|███▉      | 105M/264M [00:02<00:03, 47.1MB/s]  42%|████▏     | 111M/264M [00:02<00:03, 45.3MB/s] 46%|████▋     | 122M/264M [00:02<00:02, 60.3MB/s] 49%|████▉     | 129M/264M [00:02<00:02, 54.4MB/s] 52%|█████▏    | 137M/264M [00:02<00:02, 56.3MB/s] 57%|█████▋    | 150M/264M [00:03<00:01, 74.2MB/s] 60%|██████    | 158M/264M [00:03<00:01, 64.4MB/s] 63%|██████▎   | 166M/264M [00:03<00:01, 64.2MB/s] 66%|██████▌   | 173M/264M [00:03<00:01, 45.5MB/s] 71%|███████   | 187M/264M [00:03<00:01, 52.1MB/s] 76%|███████▌  | 200M/264M [00:04<00:01, 51.4MB/s] 85%|████████▌ | 225M/264M [00:04<00:00, 85.3MB/s] 90%|█████████ | 238M/264M [00:04<00:00, 94.1MB/s] 96%|█████████▌| 252M/264M [00:04<00:00, 91.8MB/s]100%|██████████| 264M/264M [00:04<00:00, 58.9MB/s]
++ sha256sum artifacts/checkpoints/dit_s_256.pt
+979142b209a6b6b5c9d63e025188abbe6377df7c43097321a31f7b8e5217bd58  artifacts/checkpoints/dit_s_256.pt
++ '[' -f artifacts/fid/VIRTUAL_imagenet256_labeled.npz ']'
++ curl -sSL -o artifacts/fid/VIRTUAL_imagenet256_labeled.npz https://openaipublic.blob.core.windows.net/diffusion/jul-2021/ref_batches/imagenet/256/VIRTUAL_imagenet256_labeled.npz
++ ls -la artifacts/fid artifacts/checkpoints
+artifacts/checkpoints:
+total 257609
+drwxrwxr-x 2 maxmerc maxmerc      4096 Nov 21 16:37 .
+drwxrwxr-x 2 maxmerc maxmerc      4096 Nov 21 16:37 ..
+-rw------- 1 maxmerc maxmerc 263790813 Oct 11  2023 dit_s_256.pt
+
+artifacts/fid:
+total 1989378
+drwxrwxr-x 2 maxmerc maxmerc       4096 Nov 21 16:37 .
+drwxrwxr-x 2 maxmerc maxmerc       4096 Nov 21 16:37 ..
+-rw-rw-r-- 1 maxmerc maxmerc 2037122530 Nov 21 16:38 VIRTUAL_imagenet256_labeled.npz
++ .venv/bin/python -c 'import torch;print(torch.__version__, torch.version.cuda, torch.cuda.is_available(), torch.cuda.get_device_name(0))'
+2.15.0+cu132 13.2 True NVIDIA B200
++ .venv/bin/python -m pytest -q
++ tail -5
+....................                                                     [100%]
+20 passed in 40.29s
++ .venv/bin/python -m apt_dit.evaluate verify
+{
+  "torch": "2.15.0+cu132",
+  "cuda": "13.2",
+  "gpu": "NVIDIA B200",
+  "parameters": 32963360,
+  "checkpoint_sha256": "979142b209a6b6b5c9d63e025188abbe6377df7c43097321a31f7b8e5217bd58",
+  "all_fine_max_error": 0.0,
+  "bf16_relative_rmse": 0.005216498859226704,
+  "sampling_precision": "fp32",
+  "note": "FP32 retained for initial controlled comparison; BF16 difference reported, not assumed harmless."
+}
++ echo SETUP_DONE
+SETUP_DONE

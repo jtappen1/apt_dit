@@ -1,0 +1,103 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=33G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth
+{
+  "name": "mixed_fullft",
+  "samples": 50000,
+  "traj": 5000,
+  "minutes": 70.0,
+  "batch": 256,
+  "lr": 0.0001,
+  "rank": 32,
+  "full_finetune": true,
+  "resume": null,
+  "preview_every": 2000,
+  "gen_only": false,
+  "trainable_parameters": 32290432,
+  "tau_range": [
+    0.0009183173533529043,
+    0.0067045558243989944
+  ],
+  "train_x0": 50000,
+  "train_traj": 4744,
+  "val_states": 1024,
+  "objective": "MSE(eps, 4ch) + 0.1 MSE(var), teacher targets, bf16 autocast"
+}
+step=100 loss=0.09581 lr=2.00e-05 elapsed=20s
+step=200 loss=0.07451 lr=4.00e-05 elapsed=39s
+step=300 loss=0.06167 lr=6.00e-05 elapsed=57s
+step=400 loss=0.05409 lr=7.99e-05 elapsed=76s
+step=500 loss=0.05916 lr=9.99e-05 elapsed=95s
+val step=500: {'uniform4': 0.08005881309509277, 'uniform8': 0.09323016926646233, 'mixed': 0.06127045024186373}
+step=600 loss=0.07117 lr=9.98e-05 elapsed=115s
+step=700 loss=0.05287 lr=9.98e-05 elapsed=133s
+step=800 loss=0.06866 lr=9.97e-05 elapsed=152s
+step=900 loss=0.06338 lr=9.96e-05 elapsed=171s
+step=1000 loss=0.05379 lr=9.95e-05 elapsed=190s
+val step=1000: {'uniform4': 0.07684218883514404, 'uniform8': 0.091611597687006, 'mixed': 0.05890222452580929}
+step=1100 loss=0.06494 lr=9.94e-05 elapsed=209s
+step=1200 loss=0.04937 lr=9.93e-05 elapsed=228s
+step=1300 loss=0.06783 lr=9.92e-05 elapsed=247s
+step=1400 loss=0.06673 lr=9.91e-05 elapsed=265s
+step=1500 loss=0.06742 lr=9.89e-05 elapsed=284s
+val step=1500: {'uniform4': 0.07597088254988194, 'uniform8': 0.09104119054973125, 'mixed': 0.05818518903106451}
+step=1600 loss=0.06071 lr=9.88e-05 elapsed=303s
+step=1700 loss=0.06605 lr=9.86e-05 elapsed=322s
+step=1800 loss=0.08067 lr=9.85e-05 elapsed=341s
+step=1900 loss=0.05370 lr=9.83e-05 elapsed=360s
+step=2000 loss=0.05419 lr=9.81e-05 elapsed=379s
+val step=2000: {'uniform4': 0.07530139945447445, 'uniform8': 0.09062963351607323, 'mixed': 0.05772907380014658}
+preview step=2000: {'uniform4': {'lpips': 0.809023380279541, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.8312811851501465, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.24028466641902924, 'tokens': 255.33250427246094}}
+step=2100 loss=0.05977 lr=9.78e-05 elapsed=405s
+step=2200 loss=0.06458 lr=9.76e-05 elapsed=424s
+step=2300 loss=0.06068 lr=9.74e-05 elapsed=442s
+step=2400 loss=0.05727 lr=9.72e-05 elapsed=461s
+step=2500 loss=0.04664 lr=9.70e-05 elapsed=480s
+val step=2500: {'uniform4': 0.07485048845410347, 'uniform8': 0.09029345028102398, 'mixed': 0.057345340959727764}
+step=2600 loss=0.06376 lr=9.67e-05 elapsed=499s
+step=2700 loss=0.06920 lr=9.65e-05 elapsed=518s
+step=2800 loss=0.05531 lr=9.62e-05 elapsed=537s
+step=2900 loss=0.06126 lr=9.60e-05 elapsed=551s
+step=3000 loss=0.06373 lr=9.58e-05 elapsed=570s
+val step=3000: {'uniform4': 0.07440755516290665, 'uniform8': 0.08988929353654385, 'mixed': 0.05698817502707243}
+step=3100 loss=0.05862 lr=9.55e-05 elapsed=589s
+step=3200 loss=0.04964 lr=9.52e-05 elapsed=608s
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 10066317.18 ON dgx005 CANCELLED AT 2026-11-21T17:11:10 ***
+srun: error: dgx005: task 0: Killed

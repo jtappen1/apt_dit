@@ -1,0 +1,219 @@
+
+--------------------------------------------------------------------------
+The SLURM CLI FILTER is now enforcing resource constraints as of:
+August 3, 2026.
+
+| PARTITION       | CPUS/GPU | CPU MEMORY / CPU (or GPU )   | GPU MEMORY |
+|-----------------|----------|------------------------------|------------|
+| dgx-b200        |       28 |  8    GB / CPU, (224 GB/GPU) |     180 GB |
+| b200-mig90      |       14 |  8    GB / CPU, (112 GB/GPU) |      90 GB |
+| b200-mig45      |        6 |  8    GB / CPU, ( 56 GB/GPU) |      45 GB |
+| genoa-std-mem   |        - | 5632  MB / CPU               |          - |
+| genoa-lrg-mem   |        - | 15872 MB / CPU               |          - |
+
+For further details, please review our guide (on campus or VPN):
+https://docs.parcc.upenn.edu/docs/notes/filter.html
+--------------------------------------------------------------------------
+
+# [96mSTATUS[0m                      : SLURM CLI FILTER
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -N 1                  [90m# nodes[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+# [96mSTATUS[0m                      : interpolated
+#SBATCH -p genoa-std-mem      [90m# partition[0m
+#SBATCH -n 1                  [90m# tasks, MPI ranks[0m
+#SBATCH -c 6                  [90m# CPUs / task[0m
+[90m#SBATCH --ntasks-per-node=1   #   implicit tasks / node[0m
+[90m#SBATCH --memory=33G          #   implicit memory / node[0m
+[90m#SBATCH --mem-per-cpu=5632M   #   implicit memory / CPU[0m
+
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth
+{
+  "name": "mixed_lora32",
+  "samples": 50000,
+  "traj": 5000,
+  "minutes": 60.0,
+  "batch": 256,
+  "lr": 0.0003,
+  "rank": 32,
+  "full_finetune": false,
+  "resume": null,
+  "preview_every": 1500,
+  "gen_only": false,
+  "trainable_parameters": 3289824,
+  "tau_range": [
+    0.0009183173533529043,
+    0.0067045558243989944
+  ],
+  "train_x0": 50000,
+  "train_traj": 4744,
+  "val_states": 1024,
+  "objective": "MSE(eps, 4ch) + 0.1 MSE(var), teacher targets, bf16 autocast"
+}
+step=100 loss=0.09813 lr=6.00e-05 elapsed=28s
+step=200 loss=0.07116 lr=1.20e-04 elapsed=56s
+step=300 loss=0.05263 lr=1.80e-04 elapsed=84s
+step=400 loss=0.03799 lr=2.39e-04 elapsed=112s
+step=500 loss=0.03960 lr=2.99e-04 elapsed=139s
+val step=500: {'uniform4': 0.05015779007226229, 'uniform8': 0.057587833143770695, 'mixed': 0.038977257907390594}
+step=600 loss=0.04361 lr=2.98e-04 elapsed=168s
+step=700 loss=0.02909 lr=2.98e-04 elapsed=196s
+step=800 loss=0.03866 lr=2.97e-04 elapsed=224s
+step=900 loss=0.03466 lr=2.97e-04 elapsed=251s
+step=1000 loss=0.02955 lr=2.96e-04 elapsed=279s
+val step=1000: {'uniform4': 0.03767919912934303, 'uniform8': 0.04586847126483917, 'mixed': 0.03028768766671419}
+step=1100 loss=0.03224 lr=2.95e-04 elapsed=303s
+step=1200 loss=0.02177 lr=2.94e-04 elapsed=331s
+step=1300 loss=0.03317 lr=2.93e-04 elapsed=358s
+step=1400 loss=0.03258 lr=2.92e-04 elapsed=386s
+step=1500 loss=0.03023 lr=2.91e-04 elapsed=414s
+val step=1500: {'uniform4': 0.033931595273315907, 'uniform8': 0.0412283455953002, 'mixed': 0.027293208986520767}
+preview step=1500: {'uniform4': {'lpips': 0.5369516611099243, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.6191200017929077, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.017400145530700684, 'tokens': 255.52749633789062}}
+step=1600 loss=0.02893 lr=2.89e-04 elapsed=449s
+step=1700 loss=0.03035 lr=2.88e-04 elapsed=482s
+step=1800 loss=0.03671 lr=2.86e-04 elapsed=519s
+step=1900 loss=0.02409 lr=2.84e-04 elapsed=547s
+step=2000 loss=0.02065 lr=2.82e-04 elapsed=578s
+val step=2000: {'uniform4': 0.03156530112028122, 'uniform8': 0.0386082474142313, 'mixed': 0.025503952521830797}
+step=2100 loss=0.03103 lr=2.80e-04 elapsed=611s
+step=2200 loss=0.02910 lr=2.79e-04 elapsed=636s
+step=2300 loss=0.02476 lr=2.77e-04 elapsed=667s
+step=2400 loss=0.02736 lr=2.74e-04 elapsed=699s
+step=2500 loss=0.01908 lr=2.72e-04 elapsed=729s
+val step=2500: {'uniform4': 0.029772274661809206, 'uniform8': 0.036528460681438446, 'mixed': 0.024178214371204376}
+step=2600 loss=0.02552 lr=2.70e-04 elapsed=758s
+step=2700 loss=0.02969 lr=2.68e-04 elapsed=787s
+step=2800 loss=0.02402 lr=2.65e-04 elapsed=825s
+step=2900 loss=0.02879 lr=2.62e-04 elapsed=854s
+step=3000 loss=0.02865 lr=2.59e-04 elapsed=887s
+val step=3000: {'uniform4': 0.028739395085722208, 'uniform8': 0.03531485050916672, 'mixed': 0.02335799252614379}
+preview step=3000: {'uniform4': {'lpips': 0.48836737871170044, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5903793573379517, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.01681569777429104, 'tokens': 255.4637451171875}}
+step=3100 loss=0.02562 lr=2.56e-04 elapsed=925s
+step=3200 loss=0.02111 lr=2.54e-04 elapsed=950s
+step=3300 loss=0.02544 lr=2.51e-04 elapsed=981s
+step=3400 loss=0.02456 lr=2.48e-04 elapsed=1012s
+step=3500 loss=0.02293 lr=2.45e-04 elapsed=1044s
+val step=3500: {'uniform4': 0.027971274219453335, 'uniform8': 0.03474167548120022, 'mixed': 0.022814373951405287}
+step=3600 loss=0.02910 lr=2.42e-04 elapsed=1075s
+step=3700 loss=0.02121 lr=2.39e-04 elapsed=1106s
+step=3800 loss=0.02277 lr=2.35e-04 elapsed=1138s
+step=3900 loss=0.02441 lr=2.32e-04 elapsed=1169s
+step=4000 loss=0.02282 lr=2.29e-04 elapsed=1197s
+val step=4000: {'uniform4': 0.027303644455969334, 'uniform8': 0.03374141734093428, 'mixed': 0.02227753447368741}
+step=4100 loss=0.01995 lr=2.26e-04 elapsed=1226s
+step=4200 loss=0.02554 lr=2.23e-04 elapsed=1253s
+step=4300 loss=0.02323 lr=2.20e-04 elapsed=1277s
+step=4400 loss=0.02317 lr=2.17e-04 elapsed=1305s
+step=4500 loss=0.03157 lr=2.14e-04 elapsed=1333s
+val step=4500: {'uniform4': 0.026732100639492273, 'uniform8': 0.03327896445989609, 'mixed': 0.021909384988248348}
+preview step=4500: {'uniform4': {'lpips': 0.45856431126594543, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5565763711929321, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.016325710341334343, 'tokens': 255.4600067138672}}
+step=4600 loss=0.02696 lr=2.10e-04 elapsed=1368s
+step=4700 loss=0.02554 lr=2.07e-04 elapsed=1395s
+step=4800 loss=0.02040 lr=2.04e-04 elapsed=1423s
+step=4900 loss=0.02513 lr=2.00e-04 elapsed=1451s
+step=5000 loss=0.01869 lr=1.97e-04 elapsed=1479s
+val step=5000: {'uniform4': 0.026315783616155386, 'uniform8': 0.03275071969255805, 'mixed': 0.021549676079303026}
+step=5100 loss=0.02240 lr=1.94e-04 elapsed=1507s
+step=5200 loss=0.02001 lr=1.90e-04 elapsed=1535s
+step=5300 loss=0.02119 lr=1.87e-04 elapsed=1561s
+step=5400 loss=0.02096 lr=1.84e-04 elapsed=1586s
+step=5500 loss=0.02286 lr=1.81e-04 elapsed=1614s
+val step=5500: {'uniform4': 0.02592924004420638, 'uniform8': 0.03247965965420008, 'mixed': 0.021301400382071733}
+step=5600 loss=0.02558 lr=1.77e-04 elapsed=1643s
+step=5700 loss=0.02308 lr=1.74e-04 elapsed=1670s
+step=5800 loss=0.02213 lr=1.70e-04 elapsed=1698s
+step=5900 loss=0.02601 lr=1.67e-04 elapsed=1726s
+step=6000 loss=0.02061 lr=1.63e-04 elapsed=1754s
+val step=6000: {'uniform4': 0.025625075679272413, 'uniform8': 0.032134408596903086, 'mixed': 0.02105884812772274}
+preview step=6000: {'uniform4': {'lpips': 0.4294681251049042, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5355054140090942, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.016110660508275032, 'tokens': 255.4562530517578}}
+step=6100 loss=0.02448 lr=1.59e-04 elapsed=1789s
+step=6200 loss=0.02277 lr=1.55e-04 elapsed=1817s
+step=6300 loss=0.02743 lr=1.52e-04 elapsed=1844s
+step=6400 loss=0.02585 lr=1.49e-04 elapsed=1868s
+step=6500 loss=0.02488 lr=1.46e-04 elapsed=1896s
+val step=6500: {'uniform4': 0.025251800660043955, 'uniform8': 0.03178184712305665, 'mixed': 0.020822716411203146}
+step=6600 loss=0.02356 lr=1.42e-04 elapsed=1924s
+step=6700 loss=0.01919 lr=1.39e-04 elapsed=1952s
+step=6800 loss=0.02514 lr=1.35e-04 elapsed=1980s
+step=6900 loss=0.02604 lr=1.32e-04 elapsed=2008s
+step=7000 loss=0.01998 lr=1.28e-04 elapsed=2035s
+val step=7000: {'uniform4': 0.024981104768812656, 'uniform8': 0.03143399814143777, 'mixed': 0.02061167499050498}
+step=7100 loss=0.02082 lr=1.25e-04 elapsed=2064s
+step=7200 loss=0.01753 lr=1.22e-04 elapsed=2092s
+step=7300 loss=0.02211 lr=1.18e-04 elapsed=2119s
+step=7400 loss=0.02431 lr=1.15e-04 elapsed=2147s
+step=7500 loss=0.02118 lr=1.12e-04 elapsed=2171s
+val step=7500: {'uniform4': 0.02477930299937725, 'uniform8': 0.0315999835729599, 'mixed': 0.020511596463620663}
+preview step=7500: {'uniform4': {'lpips': 0.425314337015152, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5235286355018616, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.016255196183919907, 'tokens': 255.5124969482422}}
+step=7600 loss=0.01760 lr=1.08e-04 elapsed=2206s
+step=7700 loss=0.01756 lr=1.05e-04 elapsed=2234s
+step=7800 loss=0.02258 lr=1.02e-04 elapsed=2261s
+step=7900 loss=0.02256 lr=9.85e-05 elapsed=2289s
+step=8000 loss=0.01824 lr=9.54e-05 elapsed=2317s
+val step=8000: {'uniform4': 0.024550852831453085, 'uniform8': 0.031030116602778435, 'mixed': 0.0203183526173234}
+step=8100 loss=0.01762 lr=9.22e-05 elapsed=2345s
+step=8200 loss=0.02018 lr=8.92e-05 elapsed=2373s
+step=8300 loss=0.02185 lr=8.62e-05 elapsed=2401s
+step=8400 loss=0.02392 lr=8.32e-05 elapsed=2429s
+step=8500 loss=0.01784 lr=8.07e-05 elapsed=2452s
+val step=8500: {'uniform4': 0.02446626964956522, 'uniform8': 0.030978260096162558, 'mixed': 0.020256342366337776}
+step=8600 loss=0.01792 lr=7.78e-05 elapsed=2481s
+step=8700 loss=0.01729 lr=7.49e-05 elapsed=2509s
+step=8800 loss=0.02444 lr=7.21e-05 elapsed=2536s
+step=8900 loss=0.02562 lr=6.94e-05 elapsed=2564s
+step=9000 loss=0.02173 lr=6.67e-05 elapsed=2592s
+val step=9000: {'uniform4': 0.024247268680483103, 'uniform8': 0.030758128501474857, 'mixed': 0.02009661542251706}
+preview step=9000: {'uniform4': {'lpips': 0.4183482825756073, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5264803767204285, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.01645272597670555, 'tokens': 255.5537567138672}}
+step=9100 loss=0.02298 lr=6.34e-05 elapsed=2627s
+step=9200 loss=0.02139 lr=6.08e-05 elapsed=2655s
+step=9300 loss=0.01957 lr=5.83e-05 elapsed=2682s
+step=9400 loss=0.02490 lr=5.59e-05 elapsed=2710s
+step=9500 loss=0.02009 lr=5.35e-05 elapsed=2738s
+val step=9500: {'uniform4': 0.024129307828843594, 'uniform8': 0.030608084984123707, 'mixed': 0.020015443675220013}
+step=9600 loss=0.01966 lr=5.14e-05 elapsed=2762s
+step=9700 loss=0.01668 lr=4.92e-05 elapsed=2790s
+step=9800 loss=0.02301 lr=4.70e-05 elapsed=2818s
+step=9900 loss=0.01771 lr=4.48e-05 elapsed=2846s
+step=10000 loss=0.02490 lr=4.27e-05 elapsed=2873s
+val step=10000: {'uniform4': 0.024039203766733408, 'uniform8': 0.030512163881212473, 'mixed': 0.01994674513116479}
+step=10100 loss=0.01576 lr=4.07e-05 elapsed=2902s
+step=10200 loss=0.01697 lr=3.87e-05 elapsed=2930s
+step=10300 loss=0.02094 lr=3.68e-05 elapsed=2957s
+step=10400 loss=0.02361 lr=3.50e-05 elapsed=2985s
+step=10500 loss=0.01950 lr=3.33e-05 elapsed=3013s
+val step=10500: {'uniform4': 0.02393729565665126, 'uniform8': 0.030433072708547115, 'mixed': 0.019881170708686113}
+preview step=10500: {'uniform4': {'lpips': 0.41544610261917114, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5149319171905518, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.01714896969497204, 'tokens': 255.5537567138672}}
+step=10600 loss=0.01642 lr=3.15e-05 elapsed=3044s
+step=10700 loss=0.02612 lr=2.99e-05 elapsed=3071s
+step=10800 loss=0.01766 lr=2.84e-05 elapsed=3099s
+step=10900 loss=0.02062 lr=2.70e-05 elapsed=3127s
+step=11000 loss=0.01824 lr=2.56e-05 elapsed=3155s
+val step=11000: {'uniform4': 0.02388325473293662, 'uniform8': 0.030389487277716398, 'mixed': 0.019842118490487337}
+step=11100 loss=0.02451 lr=2.43e-05 elapsed=3183s
+step=11200 loss=0.01808 lr=2.31e-05 elapsed=3211s
+step=11300 loss=0.01936 lr=2.20e-05 elapsed=3239s
+step=11400 loss=0.02296 lr=2.10e-05 elapsed=3267s
+step=11500 loss=0.02703 lr=2.00e-05 elapsed=3294s
+val step=11500: {'uniform4': 0.023845914285629988, 'uniform8': 0.030287247616797686, 'mixed': 0.019801608286798}
+step=11600 loss=0.02042 lr=1.92e-05 elapsed=3323s
+step=11700 loss=0.02555 lr=1.85e-05 elapsed=3346s
+step=11800 loss=0.02227 lr=1.78e-05 elapsed=3374s
+step=11900 loss=0.02251 lr=1.71e-05 elapsed=3402s
+step=12000 loss=0.02230 lr=1.66e-05 elapsed=3430s
+val step=12000: {'uniform4': 0.023791347164660692, 'uniform8': 0.030251081101596355, 'mixed': 0.019768066704273224}
+preview step=12000: {'uniform4': {'lpips': 0.41627535223960876, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5167772769927979, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.0160969290882349, 'tokens': 255.42625427246094}}
+step=12100 loss=0.02085 lr=1.60e-05 elapsed=3465s
+step=12200 loss=0.01764 lr=1.56e-05 elapsed=3493s
+step=12300 loss=0.01780 lr=1.53e-05 elapsed=3520s
+step=12400 loss=0.02363 lr=1.51e-05 elapsed=3548s
+step=12500 loss=0.01954 lr=1.50e-05 elapsed=3576s
+val step=12500: {'uniform4': 0.023759344592690468, 'uniform8': 0.030223720241338015, 'mixed': 0.019748038612306118}
+done step=12585 val={'uniform4': 0.02374845091253519, 'uniform8': 0.030231019016355276, 'mixed': 0.0197439924813807} preview={'uniform4': {'lpips': 0.4153861999511719, 'tokens': 75.5199966430664}, 'uniform8': {'lpips': 0.5142048001289368, 'tokens': 30.399999618530273}, 'joint': {'lpips': 0.01691856049001217, 'tokens': 255.6062469482422}}
