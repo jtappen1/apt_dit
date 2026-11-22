@@ -1,0 +1,35 @@
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 282, in <module>
+    main()
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 278, in main
+    dict(damage=damage, oracle=oracle, train=train, learned=learned)[args.cmd](args)
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 163, in oracle
+    model, vae, lp, cal, data = common(args)
+                                ^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 157, in common
+    data = torch.load(FOLD / "damage_eval.pt", map_location="cpu", weights_only=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/serialization.py", line 1566, in load
+    with _open_file_like(f, "rb") as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/serialization.py", line 796, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/serialization.py", line 777, in __init__
+    super().__init__(open(name, mode))  # noqa: SIM115
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/vast/home/m/maxmerc/apt_dit/artifacts/mixed_eval/followup/damage_eval.pt'
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth

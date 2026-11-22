@@ -1,0 +1,71 @@
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 282, in <module>
+    main()
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 278, in main
+    dict(damage=damage, oracle=oracle, train=train, learned=learned)[args.cmd](args)
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/src/apt_dit/mixed_followup.py", line 79, in damage
+    img = vae.decode(lat / .18215).sample.clamp(-1, 1)
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/utils/accelerate_utils.py", line 40, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl.py", line 235, in decode
+    decoded = self._decode(z).sample
+              ^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/models/autoencoders/autoencoder_kl.py", line 206, in _decode
+    dec = self.decoder(z)
+          ^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/models/autoencoders/vae.py", line 304, in forward
+    sample = up_block(sample, latent_embeds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/models/unets/unet_2d_blocks.py", line 2643, in forward
+    hidden_states = upsampler(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/diffusers/models/upsampling.py", line 175, in forward
+    hidden_states = self.conv(hidden_states)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 560, in _conv_forward
+    return F.conv2d(
+           ^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 31.25 GiB. GPU 0 has a total capacity of 178.35 GiB of which 8.92 GiB is free. Including non-PyTorch memory, this process has 111.53 GiB memory in use. Process 951908 has 57.88 GiB memory in use. Of the allocated memory 55.70 GiB is allocated by PyTorch, and 55.05 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth

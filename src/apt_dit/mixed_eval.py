@@ -99,7 +99,7 @@ def calibrate(args):
     model, teacher, state = load_models(args.checkpoint)
     lo, hi = state["tau_range"]
     taus = np.exp(np.linspace(math.log(lo) - 1, math.log(hi) + 1, args.points)).tolist()
-    seeds, classes = eval_set(64, offset=500_000)
+    seeds, classes = eval_set(args.cal_n, offset=args.cal_offset)
     table = {}
     for arm in ("temporal", "joint"):
         table[arm] = []
@@ -179,14 +179,16 @@ def sweep(args):
     folder = OUT / args.tag
     folder.mkdir(parents=True, exist_ok=True)
     cal = json.loads((folder / "calibration.json").read_text())
-    seeds, classes = eval_set(args.n)
+    seeds, classes = eval_set(args.n, offset=args.seed_offset)
     n_lp = args.n_lpips
     ref_imgs = torch.zeros(n_lp, 3, 256, 256, dtype=torch.float16)
     specs = [dict(name="teacher50", arm="teacher", steps=50)]
     # Teacher seed-to-seed spread for the pre-registered matching tolerance delta.
-    specs += [dict(name=f"teacher50_seedset{r}", arm="teacher", steps=50, seedset=r) for r in (1, 2)]
+    if not args.skip_extras:
+        specs += [dict(name=f"teacher50_seedset{r}", arm="teacher", steps=50, seedset=r) for r in (1, 2)]
     specs += [dict(name=f"teacher{s}", arm="teacher", steps=s) for s in args.teacher_steps]
-    specs += [dict(name="uniform4", arm="uniform4"), dict(name="uniform8", arm="uniform8")]
+    if not args.skip_extras:
+        specs += [dict(name="uniform4", arm="uniform4"), dict(name="uniform8", arm="uniform8")]
     specs += [dict(name=f"switch4_k{k}", arm="switch4", k=k) for k in args.switch_k]
     for target in args.targets:
         for fam in ("temporal", "spatial", "joint"):
@@ -433,12 +435,16 @@ def main():
     p.add_argument("--n-lpips", type=int, default=1000)
     p.add_argument("--batch", type=int, default=1000)
     p.add_argument("--targets", type=int, nargs="+", default=[200, 150, 100])
-    p.add_argument("--teacher-steps", type=int, nargs="+", default=[40, 33, 25, 20, 15, 10])
-    p.add_argument("--switch-k", type=int, nargs="+", default=[10, 20, 30])
+    p.add_argument("--teacher-steps", type=int, nargs="*", default=[40, 33, 25, 20, 15, 10])
+    p.add_argument("--switch-k", type=int, nargs="*", default=[10, 20, 30])
     p.add_argument("--only", nargs="+")
     p.add_argument("--sizes", type=int, nargs="+", default=[8, 4])
     p.add_argument("--batch-sizes", type=int, nargs="+", default=[1, 256])
     p.add_argument("--reps", type=int, default=10)
+    p.add_argument("--seed-offset", type=int, default=400_000)
+    p.add_argument("--cal-offset", type=int, default=500_000)
+    p.add_argument("--cal-n", type=int, default=64)
+    p.add_argument("--skip-extras", action="store_true")
     args = p.parse_args()
     (OUT / args.tag).mkdir(parents=True, exist_ok=True)
     dict(fidref=lambda: fidref(), calibrate=lambda: calibrate(args), sweep=lambda: sweep(args),

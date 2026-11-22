@@ -1,0 +1,35 @@
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:207: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/torchvision/models/_utils.py:222: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /vast/home/m/maxmerc/apt_dit/.venv/lib/python3.12/site-packages/lpips/weights/v0.1/alex.pth
+teacher50: FID-IN=16.23 FID-T=0.00 LPIPS=0.0000 tokens=256.0 (151s)
+temporal_T130: FID-IN=15.57 FID-T=9.45 LPIPS=0.3792 tokens=131.2 (159s)
+spatial_T130: FID-IN=49.90 FID-T=51.44 LPIPS=0.3861 tokens=131.9 (102s)
+spatial_random_T130: FID-IN=49.60 FID-T=51.08 LPIPS=0.3873 tokens=131.9 (102s)
+joint_T130: FID-IN=15.51 FID-T=9.31 LPIPS=0.3728 tokens=131.9 (135s)
+joint_random_T130: FID-IN=15.68 FID-T=9.74 LPIPS=0.3737 tokens=132.0 (151s)
+temporal_T110: FID-IN=20.65 FID-T=17.58 LPIPS=0.4146 tokens=111.1 (111s)
+spatial_T110: FID-IN=70.16 FID-T=74.41 LPIPS=0.4137 tokens=109.4 (92s)
+spatial_random_T110: FID-IN=69.76 FID-T=73.88 LPIPS=0.4149 tokens=109.4 (92s)
+joint_T110: FID-IN=21.38 FID-T=18.45 LPIPS=0.4063 tokens=111.3 (127s)
+joint_random_T110: FID-IN=22.07 FID-T=19.44 LPIPS=0.4071 tokens=111.5 (129s)
+temporal_T90: FID-IN=36.73 FID-T=37.65 LPIPS=0.4464 tokens=90.5 (102s)
+spatial_T90: FID-IN=96.45 FID-T=103.07 LPIPS=0.4380 tokens=86.8 (81s)
+spatial_random_T90: FID-IN=96.77 FID-T=103.46 LPIPS=0.4385 tokens=86.8 (81s)
+joint_T90: FID-IN=36.63 FID-T=37.52 LPIPS=0.4479 tokens=90.7 (121s)
+joint_random_T90: FID-IN=37.29 FID-T=38.27 LPIPS=0.4477 tokens=91.1 (126s)
+temporal_T70: FID-IN=69.68 FID-T=74.77 LPIPS=0.4838 tokens=71.0 (97s)
+spatial_T70: FID-IN=120.65 FID-T=128.77 LPIPS=0.4620 tokens=69.9 (69s)
+spatial_random_T70: FID-IN=120.52 FID-T=128.60 LPIPS=0.4616 tokens=69.9 (69s)
+joint_T70: FID-IN=70.37 FID-T=75.58 LPIPS=0.4857 tokens=71.0 (114s)
+joint_random_T70: FID-IN=70.08 FID-T=75.29 LPIPS=0.4847 tokens=71.6 (121s)
+temporal_T50: FID-IN=124.30 FID-T=132.43 LPIPS=0.5135 tokens=50.4 (84s)
+spatial_T50: FID-IN=147.22 FID-T=155.84 LPIPS=0.4999 tokens=50.1 (60s)
+spatial_random_T50: FID-IN=146.52 FID-T=155.14 LPIPS=0.5006 tokens=50.1 (60s)
+joint_T50: FID-IN=126.21 FID-T=134.20 LPIPS=0.5142 tokens=50.0 (106s)
+joint_random_T50: FID-IN=121.07 FID-T=129.04 LPIPS=0.5117 tokens=52.9 (114s)

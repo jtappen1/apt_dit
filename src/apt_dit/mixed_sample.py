@@ -80,6 +80,15 @@ def budget_layout(score, target_mean, steps):
     return flat.reshape(-1, 4, 4)
 
 
+def reassign(layout, priority):
+    """Keep each image's multiset of patch sizes; put the coarsest on the lowest-priority blocks."""
+    vals = layout.flatten(1).sort(dim=1, descending=True).values
+    order = priority.flatten(1).argsort(dim=1)
+    out = torch.empty_like(vals)
+    out.scatter_(1, order, vals)
+    return out.reshape(-1, 4, 4)
+
+
 def permute_blocks(layout, gen):
     b = len(layout)
     perm = torch.argsort(torch.rand(b, 16, generator=gen, device=layout.device), dim=1)
@@ -93,7 +102,8 @@ def initial_noise(seeds, device):
 
 @torch.no_grad()
 def sample_batch(model, seeds, classes, *, arm="fine", steps=50, tau=None, k=0, cfg=4.,
-                 sizes=(2, 4, 8), rho=0.75, base=None, dtype=None, random_seed=0, record=False, target=None):
+                 sizes=(2, 4, 8), rho=0.75, base=None, dtype=None, random_seed=0, record=False, target=None,
+                 priority=None):
     """Return final latents [B,4,32,32] and per-step stats."""
     device = next(model.parameters()).device
     x = initial_noise(seeds, device)
@@ -131,6 +141,14 @@ def sample_batch(model, seeds, classes, *, arm="fine", steps=50, tau=None, k=0, 
                     layout = choose(sc, tau, sizes)
                     if arm == "joint_random":
                         layout = permute_blocks(layout, gen)
+                elif arm == "joint_prio":
+                    # Joint's per-step size multiset, placed by an external priority
+                    # (low priority = coarsened first): oracle damage or a learned predictor.
+                    layout = reassign(choose(sc, tau, sizes), priority)
+                elif arm == "spatial_prio":
+                    if fixed is None:
+                        fixed = budget_layout(priority, target, steps)
+                    layout = fixed
                 else:
                     raise ValueError(arm)
         xin = torch.cat([x, x])

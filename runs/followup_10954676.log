@@ -1,0 +1,55 @@
++ cd /vast/home/m/maxmerc/apt_dit
++ source scripts/env.sh
+++++ dirname scripts/env.sh
++++ cd scripts/..
++++ pwd
+++ PROJECT_ROOT=/vast/home/m/maxmerc/apt_dit
+++ export PROJECT_ROOT
+++ export TMPDIR=/vast/home/m/maxmerc/apt_dit/.cache/tmp
+++ TMPDIR=/vast/home/m/maxmerc/apt_dit/.cache/tmp
+++ export PIP_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/pip
+++ PIP_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/pip
+++ export HF_HOME=/vast/home/m/maxmerc/apt_dit/.cache/huggingface
+++ HF_HOME=/vast/home/m/maxmerc/apt_dit/.cache/huggingface
+++ export TORCH_HOME=/vast/home/m/maxmerc/apt_dit/.cache/torch
+++ TORCH_HOME=/vast/home/m/maxmerc/apt_dit/.cache/torch
+++ export XDG_CACHE_HOME=/vast/home/m/maxmerc/apt_dit/.cache
+++ XDG_CACHE_HOME=/vast/home/m/maxmerc/apt_dit/.cache
+++ export TORCHINDUCTOR_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/inductor
+++ TORCHINDUCTOR_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/inductor
+++ export TRITON_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/triton
+++ TRITON_CACHE_DIR=/vast/home/m/maxmerc/apt_dit/.cache/triton
+++ export CUDA_CACHE_PATH=/vast/home/m/maxmerc/apt_dit/.cache/cuda
+++ CUDA_CACHE_PATH=/vast/home/m/maxmerc/apt_dit/.cache/cuda
+++ export PYTHONPYCACHEPREFIX=/vast/home/m/maxmerc/apt_dit/.cache/pycache
+++ PYTHONPYCACHEPREFIX=/vast/home/m/maxmerc/apt_dit/.cache/pycache
+++ export PYTHONPATH=/vast/home/m/maxmerc/apt_dit/src
+++ PYTHONPATH=/vast/home/m/maxmerc/apt_dit/src
+++ export OMP_NUM_THREADS=4
+++ OMP_NUM_THREADS=4
+++ export MKL_NUM_THREADS=4
+++ MKL_NUM_THREADS=4
+++ export HF_HUB_DISABLE_TELEMETRY=1
+++ HF_HUB_DISABLE_TELEMETRY=1
+++ mkdir -p /vast/home/m/maxmerc/apt_dit/.cache/tmp /vast/home/m/maxmerc/apt_dit/.cache/pip /vast/home/m/maxmerc/apt_dit/.cache/huggingface /vast/home/m/maxmerc/apt_dit/.cache/torch
++ nvidia-smi --query-gpu=name,memory.total --format=csv
+name, memory.total [MiB]
+NVIDIA B200, 183359 MiB
++ P='.venv/bin/python -m'
++ C=artifacts/training/mixed_lora32/last.pt
++ '[' -f results/mixed/stage0_headroom.json ']'
++ .venv/bin/python -m apt_dit.pixart_headroom
++ mkdir -p artifacts/mixed_eval/aggr
++ '[' -f artifacts/mixed_eval/aggr/calibration.json ']'
++ .venv/bin/python -m apt_dit.mixed_eval calibrate --checkpoint artifacts/training/mixed_lora32/last.pt --tag aggr --points 30 --cal-n 256 --cal-offset 510000
++ DPID=951907
++ .venv/bin/python -m apt_dit.mixed_eval sweep --checkpoint artifacts/training/mixed_lora32/last.pt --tag aggr --n 10000 --n-lpips 10000 --seed-offset 800000 --targets 130 110 90 70 50 --teacher-steps --switch-k --skip-extras --batch 1000
++ .venv/bin/python -m apt_dit.mixed_followup damage --batch 500
++ wait 951907
++ .venv/bin/python -m apt_dit.mixed_followup oracle --batch 500
++ grep -q '"go": true' artifacts/mixed_eval/followup/oracle.json
+grep: artifacts/mixed_eval/followup/oracle.json: No such file or directory
++ echo 'B1 no-go: learned selector not run (pre-registered stop rule)'
+B1 no-go: learned selector not run (pre-registered stop rule)
++ echo FOLLOWUP_DONE
+FOLLOWUP_DONE

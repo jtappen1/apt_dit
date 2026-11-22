@@ -74,9 +74,11 @@ fig.tight_layout()
 fig.savefig(dst / f"{tag}_pareto.png", dpi=140)
 
 lines = [f"# Shared mixed-patch DiT-S ({tag}): H1/H2 sweep", "",
-         f"One shared model for every adapted arm. {t50['n']} fresh seeds/arm (FID-5K), first 1,000 paired for LPIPS.",
-         f"Pre-registered matching tolerance δ = max |FID(teacher-50, seed set r) − FID(teacher-50)| = **{delta:.2f}** "
-         f"(teacher FID-5K {t50['fid_imagenet']:.2f}).", "",
+         f"One shared model for every adapted arm. {t50['n']} fresh seeds/arm (FID-{t50['n'] // 1000}K), "
+         f"first {max(r.get('n_lpips', 0) for r in sweep.values()):,} paired for LPIPS.",
+         (f"Pre-registered matching tolerance δ = max |FID(teacher-50, seed set r) − FID(teacher-50)| = **{delta:.2f}** "
+         f"(teacher FID {t50['fid_imagenet']:.2f})." if delta == delta else
+          f"Teacher FID {t50['fid_imagenet']:.2f}; no seed-set spread measured in this sweep."), "",
          "| Arm | τ | Mean tokens/step | Executed GFLOPs/img | FID-5K (ImageNet) | FID vs teacher | LPIPS [95% CI] | Mask turnover |",
          "|---|---:|---:|---:|---:|---:|---|---:|"]
 order = sorted(sweep.items(), key=lambda kv: (kv[0].split("_")[0], -kv[1]["gflops"]))
