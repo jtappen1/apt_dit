@@ -1,0 +1,22 @@
+Loaded trained XL/512 LoRA weights from update 1500
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: /vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/lpips/weights/v0.1/alex.pth
+Sampling teacher50: 8 paired images
+{"arm": "teacher50", "n": 8, "tokens_mean": 1024.0, "denoiser_counted_GFlops_one_pair": 104907.6596736, "median_end_to_end_seconds": 16.386774542974308, "paired_lpips": 0.0, "max_pixel_difference": 0.0, "lpips_ci": [0.0, 0.0]}
+Sampling adapter_fine50: 8 paired images
+{"arm": "adapter_fine50", "n": 8, "tokens_mean": 1024.0, "denoiser_counted_GFlops_one_pair": 104907.6596736, "median_end_to_end_seconds": 16.487655536504462, "paired_lpips": 0.0, "max_pixel_difference": 0.0, "lpips_ci": [0.0, 0.0]}
+Sampling teacher25: 8 paired images
+{"arm": "teacher25", "n": 8, "tokens_mean": 1024.0, "denoiser_counted_GFlops_one_pair": 52453.8298368, "median_end_to_end_seconds": 8.197134014917538, "paired_lpips": 0.08724414592143148, "max_pixel_difference": 1.8909311294555664, "lpips_ci": [0.030053601000690832, 0.16861812406859825]}
+Sampling gentle4_regions4: 8 paired images
+{"arm": "gentle4_regions4", "n": 8, "tokens_mean": 1006.719970703125, "denoiser_counted_GFlops_one_pair": 104146.944196608, "median_end_to_end_seconds": 16.798373179743066, "paired_lpips": 0.022603300749324262, "max_pixel_difference": 1.4727131128311157, "lpips_ci": [0.013752314960584044, 0.03187114719185047]}
+Sampling gentle4_regions16: 8 paired images
+{"arm": "gentle4_regions16", "n": 8, "tokens_mean": 954.8800048828125, "denoiser_counted_GFlops_one_pair": 98143.253102592, "median_end_to_end_seconds": 14.984221321996301, "paired_lpips": 0.10891270614229143, "max_pixel_difference": 1.8516271114349365, "lpips_ci": [0.07126192661817185, 0.14996212858241048]}
+Sampling gentle4_regions32: 8 paired images
+{"arm": "gentle4_regions32", "n": 8, "tokens_mean": 885.760009765625, "denoiser_counted_GFlops_one_pair": 90437.981110272, "median_end_to_end_seconds": 10.361801674822345, "paired_lpips": 0.17301794607192278, "max_pixel_difference": 1.8675494194030762, "lpips_ci": [0.12196410435717553, 0.22050935961306095]}

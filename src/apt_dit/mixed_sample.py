@@ -41,12 +41,12 @@ def window_scores(delta, rho=0.75):
     then the rho-quantile over the block's windows.
     """
     out = {}
+    blocks_h, blocks_w = (size // 8 for size in delta.shape[-2:])
     for p in (4, 8):
         w = delta.unfold(2, p, p).unfold(3, p, p)  # B,C,n,n,p,p
         s = w.std(dim=(-2, -1), unbiased=False).mean(1)  # B,n,n
         per = 8 // p
-        n = 32 // p
-        s = s.reshape(-1, 4, per, 4, per).permute(0, 1, 3, 2, 4).flatten(3)
+        s = s.reshape(-1, blocks_h, per, blocks_w, per).permute(0, 1, 3, 2, 4).flatten(3)
         out[p] = s.quantile(rho, dim=-1) if per > 1 else s[..., 0]
     return out
 

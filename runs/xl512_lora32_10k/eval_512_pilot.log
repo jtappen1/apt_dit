@@ -1,0 +1,24 @@
+Loaded trained XL/512 LoRA weights from update 1500
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/alexnet-owt-7be5be79.pth" to /vast/home/g/guemily/.cache/torch/hub/checkpoints/alexnet-owt-7be5be79.pth
+  0%|          | 0.00/233M [00:00<?, ?B/s]  3%|▎         | 7.12M/233M [00:00<00:03, 74.3MB/s] 21%|██        | 48.6M/233M [00:00<00:00, 285MB/s]  38%|███▊      | 89.0M/233M [00:00<00:00, 348MB/s] 57%|█████▋    | 134M/233M [00:00<00:00, 395MB/s]  74%|███████▎  | 171M/233M [00:00<00:00, 391MB/s] 90%|████████▉ | 209M/233M [00:00<00:00, 362MB/s]100%|██████████| 233M/233M [00:00<00:00, 341MB/s]
+Loading model from: /vast/home/g/guemily/envs/apt-dit/lib/python3.11/site-packages/lpips/weights/v0.1/alex.pth
+Calibration temporal target=600 achieved=605.4 tau=0.00101358
+Calibration joint target=600 achieved=587.5 tau=0.00140115
+{"arm": "teacher50", "n": 16, "tokens_mean": 1024.0, "denoiser_counted_GFlops_one_pair": 104907.6596736, "median_end_to_end_seconds": 11.407031113980338, "paired_lpips": 0.0, "lpips_ci": [0.0, 0.0]}
+{"arm": "teacher25", "n": 16, "tokens_mean": 1024.0, "denoiser_counted_GFlops_one_pair": 52453.8298368, "median_end_to_end_seconds": 5.773035638965666, "paired_lpips": 0.1039794425596483, "lpips_ci": [0.06280504409369314, 0.15627936573728213]}
+{"arm": "uniform4", "n": 16, "tokens_mean": 302.0799865722656, "denoiser_counted_GFlops_one_pair": 29569.654751232, "median_end_to_end_seconds": 5.033199569908902, "paired_lpips": 0.6078318860381842, "lpips_ci": [0.5571291394531727, 0.6608784588053822]}
+{"arm": "uniform8", "n": 16, "tokens_mean": 121.5999984741211, "denoiser_counted_GFlops_one_pair": 12132.909613056, "median_end_to_end_seconds": 3.325172442244366, "paired_lpips": 0.6683581098914146, "lpips_ci": [0.6391142334789037, 0.698133207205683]}
+{"arm": "switch20", "n": 16, "tokens_mean": 716.7999877929688, "denoiser_counted_GFlops_one_pair": 72848.93417472, "median_end_to_end_seconds": 8.761120429262519, "paired_lpips": 0.5422295965254307, "lpips_ci": [0.48289350550621746, 0.6077988002914935]}
+{"arm": "spatial_T600", "n": 16, "tokens_mean": 595.3599853515625, "denoiser_counted_GFlops_one_pair": 59811.509600256, "median_end_to_end_seconds": 7.86463414458558, "paired_lpips": 0.5110812233760953, "lpips_ci": [0.43164471359923484, 0.5898982872022316]}
+{"arm": "spatial_random_T600", "n": 16, "tokens_mean": 595.3599853515625, "denoiser_counted_GFlops_one_pair": 59811.509600256, "median_end_to_end_seconds": 7.8620876600034535, "paired_lpips": 0.5014859233051538, "lpips_ci": [0.42367968591861427, 0.5791085805743932]}
+{"arm": "temporal_T600", "n": 16, "tokens_mean": 614.7999973297119, "denoiser_counted_GFlops_one_pair": 51982.521237504, "median_end_to_end_seconds": 10.579907237552106, "paired_lpips": 0.5088807311840355, "lpips_ci": [0.41381173599511384, 0.5987826949451118]}
+{"arm": "joint_T600", "n": 16, "tokens_mean": 584.608757019043, "denoiser_counted_GFlops_one_pair": 61768.53737472, "median_end_to_end_seconds": 11.600377538707107, "paired_lpips": 0.5559945628046989, "lpips_ci": [0.5136603113263846, 0.5984546348452567]}
+{"arm": "joint_random_T600", "n": 16, "tokens_mean": 584.7850093841553, "denoiser_counted_GFlops_one_pair": 59770.520580096, "median_end_to_end_seconds": 11.483807570533827, "paired_lpips": 0.5590052474290133, "lpips_ci": [0.5171599313616753, 0.6005592026747762]}
